@@ -1,8 +1,11 @@
+// Estilos CSS
+import './styles/index.css';
+
 // Componente principal
-export { default as Formulario } from './components/Formulario';
+export { default as FormSchemaWizard } from './components/Formulario';
 
 // Client Component wrapper for Next.js App Router
-export { default as FormularioClient } from './components/FormularioClient';
+export { default as FormSchemaWizardClient } from './components/FormularioClient';
 
 // Tipos
 export type {

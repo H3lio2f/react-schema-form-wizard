@@ -1,52 +1,54 @@
 import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
-import dts from 'rollup-plugin-dts';
-import postcss from 'rollup-plugin-postcss';
-import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import json from '@rollup/plugin-json';
-import { readFileSync } from 'fs';
+import postcss from 'rollup-plugin-postcss';
+import { dts } from 'rollup-plugin-dts';
 
-const packageJson = JSON.parse(readFileSync('./package.json', 'utf8'));
+const packageJson = {
+  "name": "react-schema-form-wizard",
+  "version": "1.0.2",
+  "peerDependencies": {
+    "react": ">=16.8.0",
+    "react-dom": ">=16.8.0"
+  }
+};
 
 export default [
-  // Build ES e CommonJS
   {
     input: 'src/index.ts',
     output: [
       {
-        file: packageJson.main,
+        file: packageJson.main || 'dist/index.js',
         format: 'cjs',
         sourcemap: true,
       },
       {
-        file: packageJson.module,
+        file: packageJson.module || 'dist/index.esm.js',
         format: 'esm',
         sourcemap: true,
       },
     ],
     plugins: [
-      peerDepsExternal(),
       resolve({
         browser: true,
-        preferBuiltins: false,
       }),
       commonjs(),
       json(),
-      typescript({
-        tsconfig: './tsconfig.json',
-        exclude: ['**/*.test.*', '**/*.stories.*'],
-      }),
       postcss({
         extract: true,
         minimize: true,
       }),
+      typescript({
+        tsconfig: './tsconfig.json',
+        declaration: true,
+        declarationDir: './dist/types',
+      }),
     ],
     external: ['react', 'react-dom'],
   },
-  // Build para tipos TypeScript
   {
-    input: 'src/index.ts',
+    input: 'dist/types/index.d.ts',
     output: [{ file: 'dist/index.d.ts', format: 'esm' }],
     plugins: [dts()],
     external: [/\.css$/],

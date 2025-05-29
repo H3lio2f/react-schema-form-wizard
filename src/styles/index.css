@@ -1,0 +1,284 @@
+/* Base styles for react-schema-form-wizard */
+
+/* CSS Variables for theming */
+:root {
+  --border: 214.3 31.8% 91.4%;
+  --input: 214.3 31.8% 91.4%;
+  --ring: 222.2 84% 4.9%;
+  --background: 0 0% 100%;
+  --foreground: 222.2 84% 4.9%;
+  --primary: 222.2 47.4% 11.2%;
+  --primary-foreground: 210 40% 98%;
+  --secondary: 210 40% 96%;
+  --secondary-foreground: 222.2 84% 4.9%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 210 40% 98%;
+  --muted: 210 40% 96%;
+  --muted-foreground: 215.4 16.3% 46.9%;
+  --accent: 210 40% 96%;
+  --accent-foreground: 222.2 84% 4.9%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 222.2 84% 4.9%;
+  --card: 0 0% 100%;
+  --card-foreground: 222.2 84% 4.9%;
+  --radius: 0.5rem;
+}
+
+/* Button Styles */
+.rjsf-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  border-radius: 0.375rem;
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem 1rem;
+}
+
+.rjsf-button-primary {
+  background-color: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+}
+
+.rjsf-button-primary:hover {
+  background-color: hsl(var(--primary) / 0.9);
+}
+
+.rjsf-button-secondary {
+  background-color: hsl(var(--secondary));
+  color: hsl(var(--secondary-foreground));
+}
+
+.rjsf-button-secondary:hover {
+  background-color: hsl(var(--secondary) / 0.8);
+}
+
+.rjsf-button:disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* Input Styles */
+.rjsf-input {
+  display: flex;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 1px solid hsl(var(--border));
+  background-color: hsl(var(--background));
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.rjsf-input:focus {
+  outline: none;
+  ring: 2px;
+  ring-color: hsl(var(--ring));
+  ring-offset: 2px;
+}
+
+.rjsf-input:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+.rjsf-input::placeholder {
+  color: hsl(var(--muted-foreground));
+}
+
+/* Select Styles */
+.rjsf-select {
+  display: flex;
+  height: 2.5rem;
+  width: 100%;
+  border-radius: 0.375rem;
+  border: 2px solid #1d4ed8;
+  background-color: hsl(var(--background));
+  padding: 0.5rem 0.75rem;
+  font-size: 0.875rem;
+  transition: all 0.2s;
+}
+
+.rjsf-select:focus {
+  outline: none;
+  border-color: #1e40af;
+  ring: 2px;
+  ring-color: #60a5fa;
+  ring-offset: 2px;
+}
+
+/* Form Field Styles */
+.rjsf-field {
+  margin-bottom: 1.5rem;
+}
+
+.rjsf-label {
+  display: block;
+  font-weight: 600;
+  color: #1d4ed8;
+  margin-bottom: 0.25rem;
+  font-size: 1rem;
+}
+
+.rjsf-label-required::after {
+  content: " *";
+  color: #ef4444;
+  margin-left: 0.25rem;
+}
+
+.rjsf-description {
+  color: hsl(var(--muted-foreground));
+  font-size: 0.75rem;
+  margin-bottom: 0.25rem;
+}
+
+.rjsf-error {
+  color: #ef4444;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+.rjsf-help {
+  color: #9ca3af;
+  font-size: 0.75rem;
+  margin-top: 0.25rem;
+}
+
+/* Form Container Styles */
+.rjsf-form-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  min-width: 200px;
+}
+
+/* Progress Bar Styles */
+.rjsf-progress-container {
+  margin-bottom: 1.5rem;
+}
+
+.rjsf-progress-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.rjsf-step-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.rjsf-step-indicator {
+  font-size: 0.875rem;
+  color: #6b7280;
+}
+
+.rjsf-progress-bar {
+  width: 100%;
+  background-color: #e5e7eb;
+  border-radius: 9999px;
+  height: 0.5rem;
+}
+
+.rjsf-progress-fill {
+  background-color: #2563eb;
+  height: 0.5rem;
+  border-radius: 9999px;
+  transition: all 0.3s;
+}
+
+/* Navigation Buttons */
+.rjsf-nav-buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1.5rem;
+}
+
+.rjsf-nav-button {
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.375rem;
+  font-weight: 600;
+  box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  transition: all 0.2s;
+  border: none;
+  cursor: pointer;
+}
+
+.rjsf-nav-button-back {
+  background-color: #d1d5db;
+  color: #374151;
+}
+
+.rjsf-nav-button-next {
+  background-color: #1d4ed8;
+  color: white;
+}
+
+.rjsf-nav-button-next:hover {
+  background-color: #1e40af;
+}
+
+.rjsf-nav-button-submit {
+  background-color: #059669;
+  color: white;
+}
+
+.rjsf-nav-button-submit:hover {
+  background-color: #047857;
+}
+
+/* Error Display */
+.rjsf-error-container {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 0.375rem;
+}
+
+.rjsf-error-title {
+  color: #991b1b;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.rjsf-error-list {
+  color: #b91c1c;
+  list-style: disc;
+  list-style-position: inside;
+}
+
+/* Success Message */
+.rjsf-success-container {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f0fdf4;
+  color: #166534;
+  border-radius: 0.375rem;
+}
+
+/* Utility Classes */
+.rjsf-mb-4 { margin-bottom: 1rem; }
+.rjsf-mb-6 { margin-bottom: 1.5rem; }
+.rjsf-mt-2 { margin-top: 0.5rem; }
+.rjsf-mt-4 { margin-top: 1rem; }
+.rjsf-mt-6 { margin-top: 1.5rem; }
+.rjsf-text-2xl { font-size: 1.5rem; }
+.rjsf-text-xl { font-size: 1.25rem; }
+.rjsf-font-bold { font-weight: 700; }
+.rjsf-font-semibold { font-weight: 600; }
+.rjsf-text-gray-600 { color: #4b5563; }
+.rjsf-text-gray-500 { color: #6b7280; }
+.rjsf-w-full { width: 100%; }
+.rjsf-flex { display: flex; }
+.rjsf-flex-col { flex-direction: column; }
+.rjsf-gap-4 { gap: 1rem; }
+.rjsf-justify-between { justify-content: space-between; }
+.rjsf-justify-end { justify-content: flex-end; }
+.rjsf-items-center { align-items: center; } 

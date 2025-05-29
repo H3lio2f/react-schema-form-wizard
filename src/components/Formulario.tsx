@@ -13,6 +13,7 @@ import {
   FormResult,
   FormularioProps
 } from "../types";
+import '../styles/index.css';
 
 // Widget customizado para select
 const CustomSelectWidget = (props: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
@@ -42,7 +43,7 @@ const CustomSelectWidget = (props: any) => { // eslint-disable-line @typescript-
       onBlur={handleBlur}
       onFocus={handleFocus}
       aria-label={schema?.title || placeholder || 'Select option'}
-      className="flex h-10 w-full rounded-md border-2 border-blue-700 bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+      className="rjsf-select"
     >
       {placeholder && (
         <option value="" disabled>
@@ -353,26 +354,26 @@ export default function Formulario({
     const currentSchema = convertToRJSFSchema(currentStep.schema);
 
     return (
-      <div className={cn("flex flex-col gap-4 min-w-200", className)}>
+      <div className={cn("rjsf-form-container", className)}>
         {/* Título geral do formulário */}
-        <div className="mb-4">
-          <h1 className="text-2xl font-bold">{formJson.title}</h1>
+        <div className="rjsf-mb-4">
+          <h1 className="rjsf-text-2xl rjsf-font-bold">{formJson.title}</h1>
           {formJson.description && (
-            <p className="text-gray-600 mt-2">{formJson.description}</p>
+            <p className="rjsf-text-gray-600 rjsf-mt-2">{formJson.description}</p>
           )}
         </div>
 
         {/* Indicador de progresso */}
-        <div className="mb-6">
-          <div className="flex justify-between items-center mb-2">
-            <h2 className="text-xl font-semibold">{currentStep.title}</h2>
-            <span className="text-sm text-gray-500">
+        <div className="rjsf-progress-container">
+          <div className="rjsf-progress-header">
+            <h2 className="rjsf-step-title">{currentStep.title}</h2>
+            <span className="rjsf-step-indicator">
               {step + 1} de {steps.length}
             </span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="rjsf-progress-bar">
             <div
-              className="bg-blue-600 h-2 rounded-full transition-all duration-300"
+              className="rjsf-progress-fill"
               style={{ width: `${((step + 1) / steps.length) * 100}%` }}
             ></div>
           </div>
@@ -395,9 +396,9 @@ export default function Formulario({
         
         {/* Exibição de erros de validação */}
         {Object.keys(errors).length > 0 && (
-          <div className="mt-4 p-4 bg-red-100 border border-red-300 rounded">
-            <h4 className="text-red-800 font-semibold mb-2">Corrija os seguintes erros:</h4>
-            <ul className="text-red-700 list-disc list-inside">
+          <div className="rjsf-error-container">
+            <h4 className="rjsf-error-title">Corrija os seguintes erros:</h4>
+            <ul className="rjsf-error-list">
               {Object.values(errors).map((error, index) => (
                 <li key={index}>{error}</li>
               ))}
@@ -405,10 +406,10 @@ export default function Formulario({
           </div>
         )}
         
-        <div className="flex justify-between mt-6">
+        <div className="rjsf-nav-buttons">
           <Button
             type="button"
-            className="bg-gray-300 text-gray-700 px-6 py-2 rounded-md font-semibold shadow-md transition-colors duration-200"
+            className="rjsf-nav-button rjsf-nav-button-back"
             onClick={handleBack}
             disabled={step === 0}
           >
@@ -417,7 +418,7 @@ export default function Formulario({
           {step < steps.length - 1 ? (
             <Button
               type="button"
-              className="bg-blue-700 cursor-pointer text-white hover:bg-blue-800 px-6 py-2 rounded-md font-semibold shadow-md transition-colors duration-200"
+              className="rjsf-nav-button rjsf-nav-button-next"
               onClick={handleNext}
             >
               Próximo
@@ -425,7 +426,7 @@ export default function Formulario({
           ) : (
             <Button
               type="submit"
-              className="bg-green-700 cursor-pointer text-white hover:bg-green-800 px-6 py-2 rounded-md font-semibold shadow-md transition-colors duration-200"
+              className="rjsf-nav-button rjsf-nav-button-submit"
               onClick={handleSubmit}
             >
               Enviar
@@ -434,7 +435,7 @@ export default function Formulario({
         </div>
         
         {submitted && (
-          <div className="mt-4 p-4 bg-green-100 text-green-800 rounded">
+          <div className="rjsf-success-container">
             Formulário enviado com sucesso!
           </div>
         )}
@@ -446,12 +447,12 @@ export default function Formulario({
     const convertedSchema = convertSimpleSchemaForFiles(simpleSchema);
 
     return (
-      <div className={cn("flex flex-col gap-4 min-w-200", className)}>
+      <div className={cn("rjsf-form-container", className)}>
         {/* Título do formulário */}
-        <div className="mb-6">
-          <h2 className="text-xl font-semibold">{simpleSchema.title}</h2>
+        <div className="rjsf-mb-6">
+          <h2 className="rjsf-text-xl rjsf-font-semibold">{simpleSchema.title}</h2>
           {simpleSchema.description && (
-            <p className="text-gray-600 mt-2">{simpleSchema.description}</p>
+            <p className="rjsf-text-gray-600 rjsf-mt-2">{simpleSchema.description}</p>
           )}
         </div>
 
@@ -472,9 +473,9 @@ export default function Formulario({
         
         {/* Exibição de erros de validação */}
         {Object.keys(errors).length > 0 && (
-          <div className="mt-4 p-4 bg-red-100 border border-red-300 rounded">
-            <h4 className="text-red-800 font-semibold mb-2">Corrija os seguintes erros:</h4>
-            <ul className="text-red-700 list-disc list-inside">
+          <div className="rjsf-error-container">
+            <h4 className="rjsf-error-title">Corrija os seguintes erros:</h4>
+            <ul className="rjsf-error-list">
               {Object.values(errors).map((error, index) => (
                 <li key={index}>{error}</li>
               ))}
@@ -482,10 +483,10 @@ export default function Formulario({
           </div>
         )}
         
-        <div className="flex justify-end mt-6">
+        <div className="rjsf-flex rjsf-justify-end rjsf-mt-6">
           <Button
             type="button"
-            className="bg-green-700 cursor-pointer text-white hover:bg-green-800 px-6 py-2 rounded-md font-semibold shadow-md transition-colors duration-200"
+            className="rjsf-nav-button rjsf-nav-button-submit"
             onClick={handleSubmit}
           >
             Enviar
@@ -493,7 +494,7 @@ export default function Formulario({
         </div>
         
         {submitted && (
-          <div className="mt-4 p-4 bg-green-100 text-green-800 rounded">
+          <div className="rjsf-success-container">
             Formulário enviado com sucesso!
           </div>
         )}

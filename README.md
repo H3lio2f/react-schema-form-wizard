@@ -30,12 +30,29 @@ The library requires some peer dependencies:
 npm install react react-dom
 ```
 
+### Import Styles
+
+**Important**: You need to import the CSS file for proper styling:
+
+```jsx
+// Import the CSS at the top of your main file (App.js, index.js, or _app.js)
+import 'react-schema-form-wizard/dist/index.css';
+```
+
+Or if using a CSS file:
+
+```css
+/* In your main CSS file */
+@import 'react-schema-form-wizard/dist/index.css';
+```
+
 ## 🔧 Basic Usage
 
 ### Simple Form
 
 ```tsx
-import { Formulario } from 'react-schema-form-wizard';
+import { FormSchemaWizard } from 'react-schema-form-wizard';
+import 'react-schema-form-wizard/dist/index.css'; // Don't forget the CSS!
 
 const formSchema = {
   id: 1,
@@ -78,7 +95,7 @@ function App() {
 
   return (
     <div className="p-4">
-      <Formulario 
+      <FormSchemaWizard 
         formJson={formSchema} 
         onSubmit={handleSubmit}
       />
@@ -89,12 +106,12 @@ function App() {
 
 ### Next.js App Router Usage
 
-For Next.js 13+ with App Router, use the `FormularioClient` component:
 
 ```tsx
 'use client';
 
-import { FormularioClient } from 'react-schema-form-wizard';
+import { FormSchemaWizard } from 'react-schema-form-wizard';
+import 'react-schema-form-wizard/dist/index.css'; // Important: Import styles
 
 export default function ContactPage() {
   const handleSubmit = (result) => {
@@ -103,11 +120,30 @@ export default function ContactPage() {
 
   return (
     <div className="p-4">
-      <FormularioClient 
+      <FormSchemaWizardClient 
         formJson={formSchema} 
         onSubmit={handleSubmit}
       />
     </div>
+  );
+}
+```
+
+**For Next.js**: Add the CSS import to your main layout or `_app.js`:
+
+```tsx
+// app/layout.tsx (App Router)
+import 'react-schema-form-wizard/dist/index.css';
+
+export default function RootLayout({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
+  return (
+    <html lang="en">
+      <body>{children}</body>
+    </html>
   );
 }
 ```
@@ -118,17 +154,17 @@ Or create your own client wrapper:
 // components/FormWrapper.tsx
 'use client';
 
-import { Formulario } from 'react-schema-form-wizard';
+import { FormSchemaWizard } from 'react-schema-form-wizard';
 
 export default function FormWrapper({ formJson, onSubmit }) {
-  return <Formulario formJson={formJson} onSubmit={onSubmit} />;
+  return <FormSchemaWizard formJson={formJson} onSubmit={onSubmit} />;
 }
 ```
 
 ### Multi-Step Form
 
 ```tsx
-import { Formulario } from 'react-schema-form-wizard';
+import { FormSchemaWizard } from 'react-schema-form-wizard';
 
 const multiStepFormSchema = {
   id: 2,
@@ -201,7 +237,7 @@ const multiStepFormSchema = {
 function App() {
   return (
     <div className="p-4">
-      <Formulario formJson={multiStepFormSchema} />
+      <FormSchemaWizard formJson={multiStepFormSchema} />
     </div>
   );
 }
@@ -212,7 +248,7 @@ function App() {
 ### Custom Theme
 
 ```tsx
-import { Formulario, rjsfShadcnTheme } from 'react-schema-form-wizard';
+import { FormSchemaWizard, rjsfShadcnTheme } from 'react-schema-form-wizard';
 
 const customTheme = {
   ...rjsfShadcnTheme,
@@ -228,7 +264,7 @@ const customTheme = {
 
 function App() {
   return (
-    <Formulario 
+    <FormSchemaWizard 
       formJson={formSchema}
       customTheme={customTheme}
     />
@@ -242,7 +278,7 @@ The library uses Tailwind CSS. Make sure to include the necessary classes in you
 
 ## 📋 API Props
 
-### FormularioProps
+### FormSchemaWizardProps
 
 | Prop | Type | Required | Description |
 |------|------|----------|-------------|

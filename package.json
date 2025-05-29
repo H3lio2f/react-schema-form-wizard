@@ -1,12 +1,13 @@
 {
   "name": "react-schema-form-wizard",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "A customizable React JSON Schema Form library with shadcn/ui components and multi-step support",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
   "types": "dist/index.d.ts",
   "files": [
-    "dist"
+    "dist/**/*",
+    "README.md"
   ],
   "exports": {
     ".": {
@@ -14,7 +15,8 @@
       "require": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
-    "./styles": "./dist/styles.css"
+    "./styles": "./dist/styles.css",
+    "./dist/index.css": "./dist/index.css"
   },
   "scripts": {
     "prepublish": "npm run clean && npm run build",
