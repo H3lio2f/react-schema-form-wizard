@@ -51,10 +51,10 @@ Or if using a CSS file:
 ### Simple Form
 
 ```tsx
-import {FormResult, FormSchemaWizard } from 'react-schema-form-wizard';
+import {FormResult, FormJsonStructure, FormSchemaWizard } from 'react-schema-form-wizard';
 import 'react-schema-form-wizard/dist/index.css'; // Don't forget the CSS!
 
-const formSchema = {
+const formSchema: FormJsonStructure = {
   id: 1,
   documentId: "simple-form",
   title: "Contact Form",
@@ -104,31 +104,6 @@ function App() {
 }
 ```
 
-### Next.js App Router Usage
-
-
-```tsx
-'use client';
-
-import { FormResult, FormSchemaWizard } from 'react-schema-form-wizard';
-import 'react-schema-form-wizard/dist/index.css'; // Important: Import styles
-
-export default function ContactPage() {
-  const handleSubmit = (result: FormResult) => {
-    console.log('Form data:', result);
-  };
-
-  return (
-    <div className="p-4">
-      <FormSchemaWizardClient 
-        formJson={formSchema} 
-        onSubmit={handleSubmit}
-      />
-    </div>
-  );
-}
-```
-
 **For Next.js**: Add the CSS import to your main layout or `_app.js`:
 
 ```tsx
@@ -156,7 +131,7 @@ Or create your own client wrapper:
 
 import { FormSchemaWizard } from 'react-schema-form-wizard';
 
-export default function FormWrapper({ formJson, onSubmit }) {
+export default function FormWrapper({ formJson, onSubmit }: { formJson: FormJsonStructure, onSubmit: Promise<void>}) {
   return <FormSchemaWizard formJson={formJson} onSubmit={onSubmit} />;
 }
 ```
@@ -164,9 +139,9 @@ export default function FormWrapper({ formJson, onSubmit }) {
 ### Multi-Step Form
 
 ```tsx
-import { FormResult, FormSchemaWizard } from 'react-schema-form-wizard';
+import { FormResult, FormJsonStructure, FormSchemaWizard } from 'react-schema-form-wizard';
 
-const multiStepFormSchema = {
+const multiStepFormSchema: FormJsonStructure = {
   id: 2,
   documentId: "multi-step-form",
   title: "Complete Registration",
