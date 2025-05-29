@@ -15,59 +15,6 @@ import {
 } from "../types";
 import '../styles/index.css';
 
-// Widget customizado para select
-const CustomSelectWidget = (props: any) => { // eslint-disable-line @typescript-eslint/no-explicit-any
-  const { id, options, value, required, disabled, multiple, onChange, onBlur, onFocus, placeholder, schema } = props;
-  
-  const handleChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    const newValue = event.target.value === '' ? undefined : event.target.value;
-    onChange(newValue);
-  };
-
-  const handleBlur = () => {
-    if (onBlur) onBlur(id, value);
-  };
-
-  const handleFocus = () => {
-    if (onFocus) onFocus(id, value);
-  };
-  
-  return (
-    <select
-      id={id}
-      value={value || ''}
-      required={required}
-      disabled={disabled}
-      multiple={multiple}
-      onChange={handleChange}
-      onBlur={handleBlur}
-      onFocus={handleFocus}
-      aria-label={schema?.title || placeholder || 'Select option'}
-      className="rjsf-select"
-    >
-      {placeholder && (
-        <option value="" disabled>
-          {placeholder}
-        </option>
-      )}
-      {options.enumOptions?.map((option: any) => ( // eslint-disable-line @typescript-eslint/no-explicit-any
-        <option key={option.value} value={option.value}>
-          {option.label}
-        </option>
-      ))}
-    </select>
-  );
-};
-
-// Tema customizado com widget de select estilizado
-const customTheme = {
-  ...rjsfShadcnTheme,
-  widgets: {
-    ...rjsfShadcnTheme.widgets,
-    SelectWidget: CustomSelectWidget,
-  },
-};
-
 export default function FormSchemaWizard({ 
   formJson, 
   onSubmit, 
@@ -79,7 +26,7 @@ export default function FormSchemaWizard({
   const [submitted, setSubmitted] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const finalTheme = userCustomTheme || customTheme;
+  const finalTheme = userCustomTheme || rjsfShadcnTheme;
 
   useEffect(() => {
     const form = window.document.querySelector("button[type='submit']") as HTMLButtonElement;

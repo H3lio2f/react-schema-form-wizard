@@ -4,7 +4,6 @@ import type { ThemeProps } from "@rjsf/core";
 import type { FieldTemplateProps, WidgetProps } from "@rjsf/utils";
 import { Input } from "./ui/input";
 
-
 // Custom widget para inputs de texto usando shadcn/ui
 const CustomTextWidget = ({
   id, value, required, disabled, readonly, label, onChange, onBlur, onFocus, placeholder
@@ -19,12 +18,85 @@ const CustomTextWidget = ({
     onChange={event => onChange(event.target.value)}
     onBlur={event => onBlur && onBlur(id, event.target.value)}
     onFocus={event => onFocus && onFocus(id, event.target.value)}
-    className="border-2 border-blue-600 focus:border-blue-800 focus:ring-2 focus:ring-blue-400 placeholder:text-gray-400 text-black px-4 py-2 rounded-lg transition-all duration-200 shadow-sm bg-white"
+    className="form-control"
     aria-label={label}
     aria-required={required}
     aria-disabled={disabled}
     aria-readonly={readonly}
   />
+);
+
+// Custom widget para email
+const CustomEmailWidget = (props: WidgetProps) => (
+  <CustomTextWidget {...props} />
+);
+
+// Custom widget para password
+const CustomPasswordWidget = ({
+  id, value, required, disabled, readonly, label, onChange, onBlur, onFocus, placeholder
+}: WidgetProps) => (
+  <input
+    type="password"
+    id={id}
+    value={value ?? ""}
+    required={required}
+    disabled={disabled}
+    readOnly={readonly}
+    placeholder={placeholder}
+    onChange={event => onChange(event.target.value)}
+    onBlur={event => onBlur && onBlur(id, event.target.value)}
+    onFocus={event => onFocus && onFocus(id, event.target.value)}
+    className="form-control"
+    aria-label={label}
+  />
+);
+
+// Custom widget para textarea
+const CustomTextareaWidget = ({
+  id, value, required, disabled, readonly, label, onChange, onBlur, onFocus, placeholder
+}: WidgetProps) => (
+  <textarea
+    id={id}
+    value={value ?? ""}
+    required={required}
+    disabled={disabled}
+    readOnly={readonly}
+    placeholder={placeholder}
+    onChange={event => onChange(event.target.value)}
+    onBlur={event => onBlur && onBlur(id, event.target.value)}
+    onFocus={event => onFocus && onFocus(id, event.target.value)}
+    className="form-control"
+    rows={4}
+    aria-label={label}
+  />
+);
+
+// Custom widget para select
+const CustomSelectWidget = ({
+  id, value, required, disabled, readonly, label, onChange, onBlur, onFocus, placeholder, schema, options
+}: WidgetProps) => (
+  <select
+    id={id}
+    value={value ?? ""}
+    required={required}
+    disabled={disabled}
+    onChange={event => onChange(event.target.value)}
+    onBlur={event => onBlur && onBlur(id, event.target.value)}
+    onFocus={event => onFocus && onFocus(id, event.target.value)}
+    className="form-control"
+    aria-label={label || placeholder}
+  >
+    {placeholder && (
+      <option value="" disabled>
+        {placeholder}
+      </option>
+    )}
+    {options.enumOptions?.map((option: any) => (
+      <option key={option.value} value={option.value}>
+        {option.label}
+      </option>
+    ))}
+  </select>
 );
 
 // FieldTemplate customizado para visual moderno
@@ -38,22 +110,22 @@ const ModernFieldTemplate = ({
   errors,
   children,
 }: FieldTemplateProps) => (
-  <div className={`mb-6 ${classNames}`}>
+  <div className={`form-group ${classNames}`}>
     {label && (
-      <label htmlFor={id} className="block font-semibold text-blue-700 mb-1 text-base">
+      <label htmlFor={id} className="control-label">
         {label}
-        {required && <span className="text-red-500 ml-1">*</span>}
+        {required && <span className="required">*</span>}
       </label>
     )}
     {description && (
-      <div className="text-gray-500 text-xs mb-1">{description}</div>
+      <div className="field-description">{description}</div>
     )}
     {children}
     {errors && (
-      <div className="text-red-500 text-xs mt-1">{errors}</div>
+      <div className="text-danger">{errors}</div>
     )}
     {help && (
-      <div className="text-gray-400 text-xs mt-1">{help}</div>
+      <div className="help-block">{help}</div>
     )}
   </div>
 );
@@ -61,11 +133,12 @@ const ModernFieldTemplate = ({
 export const rjsfShadcnTheme: Partial<ThemeProps> = {
   widgets: {
     TextWidget: CustomTextWidget,
-    // Adicione outros widgets customizados aqui
+    EmailWidget: CustomEmailWidget,
+    PasswordWidget: CustomPasswordWidget,
+    TextareaWidget: CustomTextareaWidget,
+    SelectWidget: CustomSelectWidget,
   },
   templates: {
     FieldTemplate: ModernFieldTemplate,
-    // Adicione outros templates customizados aqui
   },
-  // Você pode adicionar fields customizados se quiser
 }; 
