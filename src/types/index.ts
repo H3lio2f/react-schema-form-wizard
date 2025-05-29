@@ -80,4 +80,7 @@ export interface FormularioProps {
   onSubmit?: (result: FormResult) => void;
   className?: string;
   customTheme?: any; // eslint-disable-line @typescript-eslint/no-explicit-any
-} 
+}
+
+// Alias para o novo nome
+export interface FormSchemaWizardProps extends FormularioProps {} 

@@ -11,7 +11,7 @@ import {
   FormStep,
   SimpleFormSchema,
   FormResult,
-  FormularioProps
+  FormSchemaWizardProps
 } from "../types";
 import '../styles/index.css';
 
@@ -68,12 +68,12 @@ const customTheme = {
   },
 };
 
-export default function Formulario({ 
+export default function FormSchemaWizard({ 
   formJson, 
   onSubmit, 
   className,
   customTheme: userCustomTheme 
-}: FormularioProps) {
+}: FormSchemaWizardProps) {
   const [step, setStep] = useState(0);
   const [formData, setFormData] = useState<Record<string, unknown>>({});
   const [submitted, setSubmitted] = useState(false);

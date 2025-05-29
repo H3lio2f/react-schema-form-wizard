@@ -14,7 +14,8 @@ export type {
   SimpleFormSchema,
   FormJsonStructure,
   FormResult,
-  FormularioProps
+  FormularioProps,
+  FormSchemaWizardProps
 } from './types';
 
 // Tema

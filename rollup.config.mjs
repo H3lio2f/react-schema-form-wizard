@@ -3,11 +3,12 @@ import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import json from '@rollup/plugin-json';
 import postcss from 'rollup-plugin-postcss';
+import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 import { dts } from 'rollup-plugin-dts';
 
 const packageJson = {
   "name": "react-schema-form-wizard",
-  "version": "1.0.2",
+  "version": "1.1.1",
   "peerDependencies": {
     "react": ">=16.8.0",
     "react-dom": ">=16.8.0"
@@ -30,6 +31,7 @@ export default [
       },
     ],
     plugins: [
+      peerDepsExternal(),
       resolve({
         browser: true,
       }),

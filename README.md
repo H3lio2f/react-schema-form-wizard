@@ -51,7 +51,7 @@ Or if using a CSS file:
 ### Simple Form
 
 ```tsx
-import { FormSchemaWizard } from 'react-schema-form-wizard';
+import {FormResult, FormSchemaWizard } from 'react-schema-form-wizard';
 import 'react-schema-form-wizard/dist/index.css'; // Don't forget the CSS!
 
 const formSchema = {
@@ -89,7 +89,7 @@ const formSchema = {
 };
 
 function App() {
-  const handleSubmit = (result) => {
+  const handleSubmit = (result: FormResult) => {
     console.log('Form data:', result);
   };
 
@@ -110,11 +110,11 @@ function App() {
 ```tsx
 'use client';
 
-import { FormSchemaWizard } from 'react-schema-form-wizard';
+import { FormResult, FormSchemaWizard } from 'react-schema-form-wizard';
 import 'react-schema-form-wizard/dist/index.css'; // Important: Import styles
 
 export default function ContactPage() {
-  const handleSubmit = (result) => {
+  const handleSubmit = (result: FormResult) => {
     console.log('Form data:', result);
   };
 
@@ -164,7 +164,7 @@ export default function FormWrapper({ formJson, onSubmit }) {
 ### Multi-Step Form
 
 ```tsx
-import { FormSchemaWizard } from 'react-schema-form-wizard';
+import { FormResult, FormSchemaWizard } from 'react-schema-form-wizard';
 
 const multiStepFormSchema = {
   id: 2,
@@ -235,6 +235,11 @@ const multiStepFormSchema = {
 };
 
 function App() {
+
+  const handleSubmit = (result: FormResult) => {
+    console.log('Form data:', result);
+  };
+
   return (
     <div className="p-4">
       <FormSchemaWizard formJson={multiStepFormSchema} />
