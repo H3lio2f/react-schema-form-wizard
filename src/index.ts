@@ -2,10 +2,10 @@
 import './styles/index.css';
 
 // Componente principal
-export { default as FormSchemaWizard } from './components/Formulario';
+export { default as FormSchemaWizard } from './components/FormSchemaWizard';
 
 // Client Component wrapper for Next.js App Router
-export { default as FormSchemaWizardClient } from './components/FormularioClient';
+export { default as FormSchemaWizardClient } from './components/FormSchemaWizardClient';
 
 // Tipos
 export type {

@@ -1,6 +1,6 @@
 "use client";
 
-import Formulario from './Formulario';
+import Formulario from './FormSchemaWizard';
 import { FormularioProps } from '../types';
 
 /**
