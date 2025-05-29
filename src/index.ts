@@ -1,6 +1,9 @@
 // Componente principal
 export { default as Formulario } from './components/Formulario';
 
+// Client Component wrapper for Next.js App Router
+export { default as FormularioClient } from './components/FormularioClient';
+
 // Tipos
 export type {
   FormField,

@@ -1,7 +1,9 @@
+"use client";
+
 import type { ThemeProps } from "@rjsf/core";
 import type { FieldTemplateProps, WidgetProps } from "@rjsf/utils";
 import { Input } from "./ui/input";
-import React from "react";
+
 
 // Custom widget para inputs de texto usando shadcn/ui
 const CustomTextWidget = ({

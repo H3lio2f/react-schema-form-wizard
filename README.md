@@ -87,6 +87,44 @@ function App() {
 }
 ```
 
+### Next.js App Router Usage
+
+For Next.js 13+ with App Router, use the `FormularioClient` component:
+
+```tsx
+'use client';
+
+import { FormularioClient } from 'react-schema-form-wizard';
+
+export default function ContactPage() {
+  const handleSubmit = (result) => {
+    console.log('Form data:', result);
+  };
+
+  return (
+    <div className="p-4">
+      <FormularioClient 
+        formJson={formSchema} 
+        onSubmit={handleSubmit}
+      />
+    </div>
+  );
+}
+```
+
+Or create your own client wrapper:
+
+```tsx
+// components/FormWrapper.tsx
+'use client';
+
+import { Formulario } from 'react-schema-form-wizard';
+
+export default function FormWrapper({ formJson, onSubmit }) {
+  return <Formulario formJson={formJson} onSubmit={onSubmit} />;
+}
+```
+
 ### Multi-Step Form
 
 ```tsx

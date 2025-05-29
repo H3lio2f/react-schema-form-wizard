@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import Form from "@rjsf/core";
 import { RJSFSchema } from "@rjsf/utils";

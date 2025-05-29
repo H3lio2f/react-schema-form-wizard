@@ -1,6 +1,6 @@
 {
   "name": "react-schema-form-wizard",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "A customizable React JSON Schema Form library with shadcn/ui components and multi-step support",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -17,8 +17,17 @@
     "./styles": "./dist/styles.css"
   },
   "scripts": {
+    "prepublish": "npm run clean && npm run build",
     "build": "rollup -c",
     "build:watch": "rollup -c -w",
+    "publish": "npm publish --access public",
+    "publish:patch": "npm version patch && npm publish --access public",
+    "publish:minor": "npm version minor && npm publish --access public",
+    "publish:major": "npm version major && npm publish --access public",
+    "publish:prerelease": "npm version prerelease && npm publish --access public",
+    "publish:prerelease:patch": "npm version prerelease && npm publish --access public",
+    "publish:prerelease:minor": "npm version prerelease && npm publish --access public",
+    "publish:prerelease:major": "npm version prerelease && npm publish --access public",
     "clean": "rimraf dist",
     "prepublishOnly": "npm run clean && npm run build",
     "lint": "eslint src/**/*.{ts,tsx}",
