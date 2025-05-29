@@ -1,6 +1,6 @@
 {
   "name": "react-schema-form-wizard",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A customizable React JSON Schema Form library with shadcn/ui components and multi-step support",
   "main": "dist/index.js",
   "module": "dist/index.esm.js",
@@ -21,8 +21,8 @@
     "build:watch": "rollup -c -w",
     "clean": "rimraf dist",
     "prepublishOnly": "npm run clean && npm run build",
-    "lint": "eslint src --ext .ts,.tsx",
-    "lint:fix": "eslint src --ext .ts,.tsx --fix",
+    "lint": "eslint src/**/*.{ts,tsx}",
+    "lint:fix": "eslint src/**/*.{ts,tsx} --fix",
     "type-check": "tsc --noEmit"
   },
   "keywords": [
@@ -42,7 +42,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/H3lio2f/react-schema-form-wizard.git"
+    "url": "git+https://github.com/H3lio2f/react-schema-form-wizard.git"
   },
   "bugs": {
     "url": "https://github.com/H3lio2f/react-schema-form-wizard/issues"
@@ -53,10 +53,10 @@
     "react-dom": ">=16.8.0"
   },
   "dependencies": {
+    "@radix-ui/react-slot": "^1.2.2",
     "@rjsf/core": "^6.0.0-beta.7",
     "@rjsf/utils": "^6.0.0-beta.7",
     "@rjsf/validator-ajv8": "^6.0.0-beta.7",
-    "@radix-ui/react-slot": "^1.2.2",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "^0.510.0",
@@ -64,6 +64,7 @@
   },
   "devDependencies": {
     "@rollup/plugin-commonjs": "^26.0.1",
+    "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-node-resolve": "^15.2.3",
     "@rollup/plugin-typescript": "^11.1.6",
     "@types/react": "^18.3.0",
@@ -85,4 +86,4 @@
     "tailwindcss": "^3.4.4",
     "typescript": "^5.4.0"
   }
-} 
+}

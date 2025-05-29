@@ -45,3 +45,6 @@ pids
 
 # TypeScript cache
 *.tsbuildinfo 
+
+# Rollup cache
+PUBLISH_GUIDE.md
